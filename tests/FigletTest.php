@@ -8,6 +8,8 @@
 
 namespace Povils\Figlet\Tests;
 
+use Exception;
+use InvalidArgumentException;
 use Povils\Figlet\Figlet;
 use PHPUnit\Framework\TestCase as TestCase;
 
@@ -51,7 +53,7 @@ class FigletTest extends TestCase
 
         $output = $figlet->render('Test');
 
-        $this->assertEquals($this->getModifiedDefaultBigFontText("0;31", "47"), $output);
+        $this->assertEquals($this->getModifiedDefaultBigFontText('0;31', '47'), $output);
     }
 
     /**
@@ -59,6 +61,8 @@ class FigletTest extends TestCase
      */
     public function testRender_UndefinedFontColor()
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $figlet = new Figlet();
         $figlet
             ->setFontColor('bright_red');
@@ -70,6 +74,8 @@ class FigletTest extends TestCase
      */
     public function testRender_UndefinedBackgroundColor()
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $figlet = new Figlet();
         $figlet
             ->setBackgroundColor('bright_light_gray');
@@ -106,6 +112,8 @@ class FigletTest extends TestCase
      */
     public function testRender_BandFont()
     {
+        $this->expectException(Exception::class);
+
         $figlet = new Figlet();
 
         $figlet
